@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bi7ej7aqapps0"]
+
+[ext_resource type="FontFile" uid="uid://m56c8iqewfh7" path="res://fonts/Xolonium-Regular.ttf" id="1_37p78"]
+[ext_resource type="Script" uid="uid://cbnb0l3s66yd7" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://x4vxqnbregx8" path="res://art/heart.png" id="3_8sq4i"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_8sq4i"]
+events = [SubResource("InputEventAction_64ctp")]
+
+[node name="HUD" type="CanvasLayer" unique_id=1555261159]
+script = ExtResource("1_64ctp")
+corazon_tex = ExtResource("3_8sq4i")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1466877325]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=195711383]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -120.0
+offset_right = 240.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 64
+text = "¡Esquiva los monos!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="." unique_id=1107103680]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -140.0
+offset_right = 100.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_8sq4i")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=1466936440]
+wait_time = 2.0
+one_shot = true
+
+[node name="ContenedorVidas" type="HBoxContainer" parent="." unique_id=1852322760]
+offset_left = 28.0
+offset_top = 4.0
+offset_right = 534.0
+offset_bottom = 91.0
+
+[node name="TextureRect" type="TextureRect" parent="ContenedorVidas" unique_id=504823477]
+layout_mode = 2
+texture = ExtResource("3_8sq4i")
+expand_mode = 3
+stretch_mode = 4
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://beimx354t1ch2"]
+
+[ext_resource type="Texture2D" uid="uid://crecj8ji5p51l" path="res://art/playerGrey_up1.png" id="1_hqtel"]
+[ext_resource type="Script" uid="uid://idujfyi2br6t" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="PackedScene" uid="uid://cuf38kuo4kkx8" path="res://projectile.tscn" id="2_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://cj38w25c0pr8n" path="res://art/playerGrey_up2.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://boegrkcnsdbn3" path="res://art/playerGrey_walk1.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://cb6ud15d5qhgl" path="res://art/playerGrey_walk2.png" id="4_1jxqw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hqtel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sweqy")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
+radius = 33.0
+height = 66.0
+
+[node name="Player" type="Area2D" unique_id=942787309 groups=["jugador"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_sweqy")
+projectile_scene = ExtResource("2_2hs0m")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1954067337]
+scale = Vector2(0.175, 0.175)
+sprite_frames = SubResource("SpriteFrames_dw050")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1992847501]
+shape = SubResource("CapsuleShape2D_b26j0")
+
+[node name="PuntoDisparo" type="Node2D" parent="." unique_id=1970500167]
+position = Vector2(32.5, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

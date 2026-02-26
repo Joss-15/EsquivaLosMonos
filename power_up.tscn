@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cce3lmhh3paiv"]
+
+[ext_resource type="Texture2D" uid="uid://ch47c6nhs4fhk" path="res://art/dashPowerUp.png" id="1_lbdsv"]
+[ext_resource type="Script" uid="uid://de7ed3rjgbpvv" path="res://power_up.gd" id="1_mkoic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkoic"]
+radius = 13.0
+
+[node name="PowerUp" type="Area2D" unique_id=597607141]
+scale = Vector2(3, 3)
+collision_layer = 9
+script = ExtResource("1_mkoic")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=427330347]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_lbdsv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1162977925]
+shape = SubResource("CircleShape2D_mkoic")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
